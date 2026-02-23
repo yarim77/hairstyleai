@@ -68,8 +68,16 @@ if (preg_match('/^data:(image\/[a-zA-Z]+);base64/', $base64ImageStr, $matches)) 
     $mimeType = $matches[1];
 }
 
-$apiKey = 'AIzaSyC6DllJ0rpRR_YGgOu5I4RBJKMPgFAbsfg'; // Google AI API Key
+$apiKey = '';
+$configFile = __DIR__ . '/config.php';
+if (file_exists($configFile)) {
+    require_once $configFile;
+}
 
+if (empty($apiKey) || $apiKey === '새로운_구글_API_키를_여기에_붙여넣으세요') {
+    echo json_encode(['success' => false, 'error' => "서버 설정 오류: 새로운 구글 API 키가 등록되지 않았습니다. config.php 파일을 확인하세요."]);
+    exit();
+}
 $requestBody = [
     'contents' => [
         [
@@ -104,6 +112,8 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonBody);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json'
 ));
+curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2); // Force TLSv1.2 (fixes hangs on older OpenSSL)
+curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4); // Force IPv4 (fixes IPv6 routing loops/hangs)
 curl_setopt($ch, CURLOPT_TIMEOUT, 120); // allow up to 120 seconds for generation
 
 $response = curl_exec($ch);
