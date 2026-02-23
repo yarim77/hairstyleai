@@ -258,15 +258,21 @@
                     const img = new Image();
                     img.src = event.target.result;
                     img.onload = () => {
-                        const MAX_WIDTH = 1024;
-                        const MAX_HEIGHT = 1024;
+                        const MAX_WIDTH = 800;
+                        const MAX_HEIGHT = 800;
                         let width = img.width;
                         let height = img.height;
 
                         if (width > height) {
-                            if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                            if (width > MAX_WIDTH) { 
+                                height = Math.round(height * MAX_WIDTH / width); 
+                                width = MAX_WIDTH; 
+                            }
                         } else {
-                            if (height > MAX_HEIGHT) { width *= MAX_HEIGHT / height; height = MAX_HEIGHT; }
+                            if (height > MAX_HEIGHT) { 
+                                width = Math.round(width * MAX_HEIGHT / height); 
+                                height = MAX_HEIGHT; 
+                            }
                         }
 
                         const canvas = document.createElement('canvas');
@@ -274,8 +280,13 @@
                         canvas.height = height;
 
                         const ctx = canvas.getContext('2d');
+                        // 모바일 투명도 오류 방지용 흰색 배경 채우기
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, width, height);
                         ctx.drawImage(img, 0, 0, width, height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.8));
+                        
+                        // 구글 AI 처리 속도 향상 및 타임아웃 방지를 위해 압축률 증가
+                        resolve(canvas.toDataURL('image/jpeg', 0.6));
                     };
                     img.onerror = reject;
                 };

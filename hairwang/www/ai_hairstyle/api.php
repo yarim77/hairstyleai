@@ -117,7 +117,7 @@ curl_setopt($ch, CURLOPT_SSLVERSION, 6); // 6 is CURL_SSLVERSION_TLSv1_2 (fixes 
 curl_setopt($ch, CURLOPT_IPRESOLVE, 1); // 1 is CURL_IPRESOLVE_V4 (fixes IPv6 routing loops/hangs)
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Ignore SSL verify issues on shared host
 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); // Ignore SSL verify host
-curl_setopt($ch, CURLOPT_TIMEOUT, 120); // allow up to 120 seconds for generation
+curl_setopt($ch, CURLOPT_TIMEOUT, 180); // allow up to 180 seconds for generation
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -131,7 +131,7 @@ if ($error) {
             'method' => 'POST',
             'header' => "Content-Type: application/json\r\n",
             'content' => $jsonBody,
-            'timeout' => 120,
+            'timeout' => 180,
             'ignore_errors' => true
         ],
         'ssl' => [
