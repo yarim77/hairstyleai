@@ -125,37 +125,13 @@ $error = curl_error($ch);
 curl_close($ch);
 
 if ($error) {
-    // 1차 cURL 실패 시, 스트림 우회 방식으로 2차 시도 (일부 호스팅 방화벽 우회용)
-    $options = [
-        'http' => [
-            'method' => 'POST',
-            'header' => "Content-Type: application/json\r\n",
-            'content' => $jsonBody,
-            'timeout' => 180,
-            'protocol_version' => 1.0, // Force HTTP 1.0 to drop Chunked Transfer/100-Continue
-            'ignore_errors' => true
-        ],
-        'ssl' => [
-            'verify_peer' => false,
-            'verify_peer_name' => false
-        ]
-    ];
-    $context = stream_context_create($options);
-    $response = @file_get_contents($url, false, $context);
-
-    if ($response === false) {
-        $errorMsg = "서버 외부접속 완전 차단됨. 호스팅 고객센터에 다음을 요청주세요: [ 외부 API(generativelanguage.googleapis.com) 도메인 및 443(https) 아웃바운드 포트 통신 허용 요청 방화벽 해제 ]. / cURL 에러: " . $error . " / stream 에러: " . error_get_last()['message'];
+    if ($error === 'Operation timed out after 180001 milliseconds with 0 out of -1 bytes received' || strpos($error, 'timed out') !== false) {
+        $errorMsg = "이미지 처리 시간이 초과되었습니다 (타임아웃). 다시 시도해주세요. 지속될 경우, 서버 방화벽에서 외부(구글) 연결을 차단하고 있을 수 있습니다.";
         echo json_encode(['success' => false, 'error' => $errorMsg]);
-        exit();
+    } else {
+        echo json_encode(['success' => false, 'error' => $error]);
     }
-
-    // 파일 겟 컨텐츠가 성공한 경우 HTTP 코드 유추
-    $httpCode = 200;
-    if (isset($http_response_header) && is_array($http_response_header)) {
-        if (preg_match('#HTTP/\d+\.\d+ (\d+)#i', $http_response_header[0], $matches)) {
-            $httpCode = intval($matches[1]);
-        }
-    }
+    exit();
 }
 $responseData = json_decode($response, true);
 if ($httpCode !== 200) {
