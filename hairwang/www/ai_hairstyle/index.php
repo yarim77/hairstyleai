@@ -66,7 +66,7 @@
             <div class="md:text-center">
                 <!-- Header Section -->
                 <h2 class="text-3xl font-extrabold leading-tight tracking-tight mb-2 md:text-5xl md:mb-4">당신에게 어울리는<br>2026 트렌드 헤어</h2>
-                <p class="text-slate-500 font-medium mb-8 md:text-lg">AI가 내 얼굴형과 이목구비에 맞는 20가지 헤어스타일을 실시간으로 분석해드립니다.</p>
+                <p class="text-slate-500 font-medium mb-8 md:text-lg">AI가 내 얼굴형과 이목구비에 맞는 9가지 헤어스타일을 실시간으로 분석해드립니다.</p>
             </div>
 
             <!-- Action Card -->
@@ -166,7 +166,7 @@
             <h3 class="text-[26px] font-extrabold mb-3 text-center tracking-tight leading-tight">얼굴형 및 이목구비<br>정밀 분석 중
             </h3>
             <p class="text-[14px] text-slate-400 text-center font-medium max-w-[260px] leading-relaxed">
-                AI가 사진을 스캔하여 가장 잘 어울리는<br>20가지 트렌드 헤어를 조합하고 있습니다.<br>
+                AI가 사진을 스캔하여 가장 잘 어울리는<br>9가지 트렌드 헤어를 조합하고 있습니다.<br>
                 <span class="text-white bg-white/10 px-2 py-0.5 rounded text-[12px] mt-2 inline-block">약 30~50초
                     소요됩니다</span>
             </p>
@@ -203,7 +203,7 @@
                     </div>
                     <h2 class="text-[20px] md:text-[32px] font-extrabold leading-tight tracking-tight mb-2 md:mb-4">당신에게 어울리는<br>2026 트렌드 헤어
                     </h2>
-                    <p class="text-[13px] md:text-[15px] text-slate-500 font-medium leading-snug mb-6 md:mb-10">분석 결과 이목구비에 가장 잘 어울리는 20가지 스타일링이 생성되었습니다.</p>
+                    <p class="text-[13px] md:text-[15px] text-slate-500 font-medium leading-snug mb-6 md:mb-10">분석 결과 이목구비에 가장 잘 어울리는 9가지 스타일링이 생성되었습니다.</p>
                 </div>
             </section>
 
@@ -428,7 +428,7 @@
                 if (navigator.share && isMobile) {
                     let shareData = {
                         title: 'HAIRSTYLE AI - 2026 트렌드 헤어',
-                        text: '나에게 어울리는 20가지 헤어스타일을 생성해봤어요! 지금 바로 확인해보세요.',
+                        text: '나에게 어울리는 9가지 헤어스타일을 생성해봤어요! 지금 바로 확인해보세요.',
                         url: window.location.href
                     };
 
