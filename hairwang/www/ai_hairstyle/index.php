@@ -337,10 +337,17 @@
                     body: formData
                 });
 
-                const result = await res.json();
+                const rawText = await res.text();
+                let result;
+                try {
+                    result = JSON.parse(rawText);
+                } catch (parseError) {
+                    console.error("Raw server response:", rawText);
+                    throw new Error("서버 응답을 분석할 수 없습니다 (시간 초과 또는 호스팅 방화벽 차단). 원본 메세지: " + rawText.substring(0, 100));
+                }
 
                 if (!result.success) {
-                    if (result.error.includes("보안 정책") || result.error.includes("거부")) {
+                    if (result.error && (result.error.includes("보안 정책") || result.error.includes("거부"))) {
                         throw new Error(result.error);
                     } else {
                         throw new Error("서버 에러: " + (result.error || "알 수 없는 오류"));
