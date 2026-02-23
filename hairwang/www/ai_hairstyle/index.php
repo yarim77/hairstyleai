@@ -313,14 +313,13 @@
             document.getElementById('loadingView').classList.remove('hidden');
 
             try {
-                const urlencoded = new URLSearchParams();
-                urlencoded.append("image", selectedBase64);
-                urlencoded.append("gender", selectedGender);
+                const formData = new FormData();
+                formData.append("image", selectedBase64);
+                formData.append("gender", selectedGender);
 
                 const res = await fetch('api.php', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: urlencoded
+                    body: formData
                 });
 
                 const result = await res.json();
