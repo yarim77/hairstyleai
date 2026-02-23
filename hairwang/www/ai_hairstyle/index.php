@@ -217,7 +217,7 @@
                     <button onclick="handleDownload()"
                         class="flex-1 max-w-[280px] bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] border border-slate-200 active:scale-95 hover:bg-slate-50 transition-all">
                         <span class="material-symbols-outlined text-[20px]">download</span>
-                        <span>전체 저장</span>
+                        <span>이미지 저장</span>
                     </button>
                     <button onclick="handleShare()"
                         class="flex-1 max-w-[280px] bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] hover:bg-zinc-800 active:scale-95 transition-all">
@@ -434,7 +434,7 @@
 
                     await navigator.share(shareData);
                 } else {
-                    alert("가장 예쁜 스타일을 [전체 저장]하신 뒤, 메신저를 통해 모임이나 친구들에게 직접 공유해보세요! 💇‍♀️");
+                    alert("가장 예쁜 스타일을 [이미지 저장]하신 뒤, 메신저를 통해 모임이나 친구들에게 직접 공유해보세요! 💇‍♀️");
                 }
             } catch (error) {
                 if (error.name !== 'AbortError') {
