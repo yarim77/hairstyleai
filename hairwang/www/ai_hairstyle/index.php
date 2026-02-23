@@ -364,10 +364,15 @@
         }
 
         function showResult() {
-            document.getElementById('loadingView').classList.add('hidden');
-            document.getElementById('resultView').classList.remove('hidden');
-            document.getElementById('resultThumb').src = selectedBase64;
-            document.getElementById('generatedImg').src = generatedUrl;
+            try {
+                document.getElementById('loadingView').classList.add('hidden');
+                document.getElementById('resultView').classList.remove('hidden');
+                document.getElementById('resultThumb').src = selectedBase64;
+                document.getElementById('generatedImg').src = generatedUrl;
+            } catch (imgError) {
+                console.error("Image Display Error:", imgError);
+                throw new Error("결과 이미지를 화면에 렌더링하는 데 실패했습니다. (잘못된 이미지 데이터)");
+            }
         }
 
         function resetApp() {

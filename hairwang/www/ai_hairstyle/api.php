@@ -9,9 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Enable error reporting to catch unexpected syntax/execution issues on the live server
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Ensure no HTML errors break JSON
+error_reporting(0);
+ini_set('display_errors', 0);
+@set_time_limit(180);
 
 // Custom error handler to ensure we always output JSON even on fatal PHP errors.
 set_error_handler(function ($errno, $errstr, $errfile, $errline) {
