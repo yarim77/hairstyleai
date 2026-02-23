@@ -53,26 +53,25 @@
     <!-- Step 1: Upload Layout -->
     <div id="uploadView">
         <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-            <div class="flex items-center justify-between px-4 h-[52px]">
+            <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-[52px]">
                 <a href="/"
-                    class="w-10 h-10 flex items-center justify-center rounded-full active:opacity-50 transition-opacity">
+                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 active:opacity-50 transition-all">
                     <span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span>
                 </a>
                 <h1 class="text-[17px] font-bold tracking-tight">AI 헤어스타일 가상 체험</h1>
-                <button
-                    class="w-10 h-10 flex items-center justify-center rounded-full active:opacity-50 transition-opacity">
-                    <span class="material-symbols-outlined text-[22px]">more_horiz</span>
-                </button>
+                <div class="w-10 h-10"></div> <!-- Placeholder for layout balance -->
             </div>
         </nav>
-        <main class="max-w-md mx-auto px-4 pt-6 pb-24">
-            <!-- Header Section -->
-            <h2 class="text-3xl font-extrabold leading-tight tracking-tight mb-2">당신에게 어울리는<br>2026 트렌드 헤어</h2>
-            <p class="text-slate-500 font-medium mb-8">AI가 내 얼굴형과 이목구비에 맞는 20가지 헤어스타일을 실시간으로 분석해드립니다.</p>
+        <main class="max-w-md mx-auto px-4 pt-6 pb-24 md:max-w-2xl lg:max-w-4xl md:pt-16">
+            <div class="md:text-center">
+                <!-- Header Section -->
+                <h2 class="text-3xl font-extrabold leading-tight tracking-tight mb-2 md:text-5xl md:mb-4">당신에게 어울리는<br>2026 트렌드 헤어</h2>
+                <p class="text-slate-500 font-medium mb-8 md:text-lg">AI가 내 얼굴형과 이목구비에 맞는 20가지 헤어스타일을 실시간으로 분석해드립니다.</p>
+            </div>
 
             <!-- Action Card -->
             <div
-                class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 flex flex-col items-center justify-center min-h-[300px] text-center mb-6">
+                class="bg-white rounded-3xl p-6 md:p-12 md:py-16 shadow-sm border border-slate-100 flex flex-col items-center justify-center min-h-[300px] text-center mb-6">
                 <div id="previewContainer"
                     class="hidden relative w-32 h-32 rounded-full overflow-hidden mb-4 shadow-md border-4 border-slate-50">
                     <img id="previewImage" src="" alt="preview" class="w-full h-full object-cover">
@@ -177,54 +176,66 @@
     <!-- Step 3: Result View -->
     <div id="resultView" class="hidden">
         <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-            <div class="flex items-center justify-between px-4 h-[52px]">
+            <div class="max-w-screen-xl mx-auto flex items-center justify-between px-4 h-[52px]">
                 <button onclick="resetApp()"
-                    class="w-10 h-10 flex items-center justify-center rounded-full active:opacity-50 transition-opacity">
+                    class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 active:opacity-50 transition-all">
                     <span class="material-symbols-outlined text-[22px]">arrow_back_ios_new</span>
                 </button>
                 <h1 class="text-[17px] font-bold tracking-tight">AI 분석 결과</h1>
-                <button
-                    class="w-10 h-10 flex items-center justify-center rounded-full active:opacity-50 transition-opacity">
-                    <span class="material-symbols-outlined text-[22px]">more_horiz</span>
-                </button>
+                <div class="w-10 h-10"></div> <!-- Placeholder -->
             </div>
         </nav>
-        <main class="max-w-md mx-auto">
-            <section class="p-5 flex gap-4 items-center">
-                <div class="relative">
+        <main class="max-w-md mx-auto md:max-w-5xl md:grid md:grid-cols-12 md:gap-10 md:pt-10 md:px-8">
+            <section class="p-5 flex gap-4 items-center md:col-span-4 md:flex-col md:items-start md:p-0 md:sticky md:top-32 md:h-fit">
+                <div class="relative w-[120px] md:w-full md:aspect-auto md:pb-4">
                     <div
-                        class="w-[120px] aspect-[3/4] rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-white">
+                        class="w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-sm border border-slate-200 bg-white">
                         <img id="resultThumb" alt="User original selfie" class="w-full h-full object-cover" src="">
                     </div>
                     <div
-                        class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] px-3 py-1 rounded-full font-bold tracking-widest uppercase">
+                        class="absolute -bottom-2 md:bottom-2 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] md:text-[11px] px-3 py-1 rounded-full font-bold tracking-widest uppercase">
                         Original</div>
                 </div>
-                <div class="flex-1">
-                    <div class="inline-flex items-center gap-1 text-[#135bec] mb-1">
-                        <span class="material-symbols-outlined text-[14px] filled-icon">verified</span>
-                        <span class="text-[11px] font-bold uppercase tracking-wider">Analysis Complete</span>
+                <div class="flex-1 md:w-full">
+                    <div class="inline-flex items-center gap-1 text-[#135bec] mb-1 md:mb-2">
+                        <span class="material-symbols-outlined text-[14px] md:text-[18px] filled-icon">verified</span>
+                        <span class="text-[11px] md:text-[13px] font-bold uppercase tracking-wider">Analysis Complete</span>
                     </div>
-                    <h2 class="text-[20px] font-extrabold leading-tight tracking-tight mb-2">당신에게 어울리는<br>2026 트렌드 헤어
+                    <h2 class="text-[20px] md:text-[32px] font-extrabold leading-tight tracking-tight mb-2 md:mb-4">당신에게 어울리는<br>2026 트렌드 헤어
                     </h2>
-                    <p class="text-[13px] text-slate-500 font-medium leading-snug">분석 결과 이목구비에 가장 잘 어울리는 20가지 스타일링이
+                    <p class="text-[13px] md:text-[15px] text-slate-500 font-medium leading-snug mb-6 md:mb-10">분석 결과 이목구비에 가장 잘 어울리는 20가지 스타일링이
                         생성되었습니다.</p>
+                        
+                    <!-- Desktop buttons shown only on larger screens -->
+                    <div class="hidden md:flex flex-col gap-3 w-full">
+                        <button onclick="handleDownload()"
+                            class="w-full bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] border border-slate-200 shadow-sm hover:bg-slate-50 active:scale-95 transition-all">
+                            <span class="material-symbols-outlined text-[20px]">download</span>
+                            <span>전체 저장</span>
+                        </button>
+                        <button onclick="handleShare()"
+                            class="w-full bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] hover:bg-zinc-800 active:scale-95 transition-all">
+                            <span class="material-symbols-outlined text-[20px]">share</span>
+                            <span>SNS 공유하기</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
-            <section class="px-2 pb-16">
-                <div class="w-full relative shadow-sm border border-slate-100 rounded-lg overflow-hidden bg-white mb-6">
+            <section class="px-2 pb-16 md:col-span-8 md:p-0">
+                <div class="w-full relative shadow-[0_0_20px_rgba(0,0,0,0.05)] border border-slate-100 rounded-xl md:rounded-3xl overflow-hidden bg-white mb-6 md:mb-0">
                     <img id="generatedImg" alt="Generated Hairstyle" class="w-full h-auto object-cover" src="">
                 </div>
 
-                <div class="flex justify-center gap-3 mb-8 w-full">
+                <!-- Mobile buttons shown only on smaller screens -->
+                <div class="flex md:hidden justify-center gap-3 mb-8 w-full mt-4">
                     <button onclick="handleDownload()"
-                        class="flex-1 bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.15)] active:scale-95 transition-all">
+                        class="flex-1 bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] border border-slate-200 active:scale-95 transition-all">
                         <span class="material-symbols-outlined text-[20px]">download</span>
                         <span>전체 저장</span>
                     </button>
                     <button onclick="handleShare()"
-                        class="flex-1 bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] shadow-[0_8px_24px_rgba(0,0,0,0.15)] active:scale-95 transition-all">
+                        class="flex-1 bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] active:scale-95 transition-all">
                         <span class="material-symbols-outlined text-[20px]">share</span>
                         <span>SNS 공유하기</span>
                     </button>
