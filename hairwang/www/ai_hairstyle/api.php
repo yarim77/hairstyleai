@@ -110,10 +110,13 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonBody);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: application/json'
+    'Content-Type: application/json',
+    'Expect:' // Removes the automatically added Expect: 100-continue header for large POSTs
 ));
 curl_setopt($ch, CURLOPT_SSLVERSION, 6); // 6 is CURL_SSLVERSION_TLSv1_2 (fixes hangs on older OpenSSL)
 curl_setopt($ch, CURLOPT_IPRESOLVE, 1); // 1 is CURL_IPRESOLVE_V4 (fixes IPv6 routing loops/hangs)
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Ignore SSL verify issues on shared host
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0); // Ignore SSL verify host
 curl_setopt($ch, CURLOPT_TIMEOUT, 120); // allow up to 120 seconds for generation
 
 $response = curl_exec($ch);
