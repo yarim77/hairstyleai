@@ -203,22 +203,7 @@
                     </div>
                     <h2 class="text-[20px] md:text-[32px] font-extrabold leading-tight tracking-tight mb-2 md:mb-4">당신에게 어울리는<br>2026 트렌드 헤어
                     </h2>
-                    <p class="text-[13px] md:text-[15px] text-slate-500 font-medium leading-snug mb-6 md:mb-10">분석 결과 이목구비에 가장 잘 어울리는 20가지 스타일링이
-                        생성되었습니다.</p>
-                        
-                    <!-- Desktop buttons shown only on larger screens -->
-                    <div class="hidden md:flex flex-col gap-3 w-full">
-                        <button onclick="handleDownload()"
-                            class="w-full bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] border border-slate-200 shadow-sm hover:bg-slate-50 active:scale-95 transition-all">
-                            <span class="material-symbols-outlined text-[20px]">download</span>
-                            <span>전체 저장</span>
-                        </button>
-                        <button onclick="handleShare()"
-                            class="w-full bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] hover:bg-zinc-800 active:scale-95 transition-all">
-                            <span class="material-symbols-outlined text-[20px]">share</span>
-                            <span>SNS 공유하기</span>
-                        </button>
-                    </div>
+                    <p class="text-[13px] md:text-[15px] text-slate-500 font-medium leading-snug mb-6 md:mb-10">분석 결과 이목구비에 가장 잘 어울리는 20가지 스타일링이 생성되었습니다.</p>
                 </div>
             </section>
 
@@ -227,15 +212,15 @@
                     <img id="generatedImg" alt="Generated Hairstyle" class="w-full h-auto object-cover" src="">
                 </div>
 
-                <!-- Mobile buttons shown only on smaller screens -->
-                <div class="flex md:hidden justify-center gap-3 mb-8 w-full mt-4">
+                <!-- Action buttons (visible on all breakpoints) -->
+                <div class="flex flex-row justify-center gap-3 w-full mt-6">
                     <button onclick="handleDownload()"
-                        class="flex-1 bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] border border-slate-200 active:scale-95 transition-all">
+                        class="flex-1 max-w-[280px] bg-white text-black h-[52px] rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] border border-slate-200 active:scale-95 hover:bg-slate-50 transition-all">
                         <span class="material-symbols-outlined text-[20px]">download</span>
                         <span>전체 저장</span>
                     </button>
                     <button onclick="handleShare()"
-                        class="flex-1 bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] active:scale-95 transition-all">
+                        class="flex-1 max-w-[280px] bg-black text-white h-[52px] border border-white/10 rounded-full flex items-center justify-center gap-2.5 font-bold text-[15px] hover:bg-zinc-800 active:scale-95 transition-all">
                         <span class="material-symbols-outlined text-[20px]">share</span>
                         <span>SNS 공유하기</span>
                     </button>
@@ -426,8 +411,9 @@
         }
 
         async function handleShare() {
+            const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             try {
-                if (navigator.share) {
+                if (navigator.share && isMobile) {
                     let shareData = {
                         title: 'HAIRSTYLE AI - 2026 트렌드 헤어',
                         text: '나에게 어울리는 20가지 헤어스타일을 생성해봤어요! 지금 바로 확인해보세요.',
@@ -448,8 +434,7 @@
 
                     await navigator.share(shareData);
                 } else {
-                    await navigator.clipboard.writeText(window.location.href);
-                    alert("현재 페이지 링크가 복사되었습니다! 원하는 곳에 붙여넣어 공유해주세요.");
+                    alert("가장 예쁜 스타일을 [전체 저장]하신 뒤, 메신저를 통해 모임이나 친구들에게 직접 공유해보세요! 💇‍♀️");
                 }
             } catch (error) {
                 if (error.name !== 'AbortError') {
