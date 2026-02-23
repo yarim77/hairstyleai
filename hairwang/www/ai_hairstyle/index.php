@@ -258,8 +258,8 @@
                     const img = new Image();
                     img.src = event.target.result;
                     img.onload = () => {
-                        const MAX_WIDTH = 800;
-                        const MAX_HEIGHT = 800;
+                        const MAX_WIDTH = 500;
+                        const MAX_HEIGHT = 500;
                         let width = img.width;
                         let height = img.height;
 
@@ -285,8 +285,8 @@
                         ctx.fillRect(0, 0, width, height);
                         ctx.drawImage(img, 0, 0, width, height);
                         
-                        // 구글 AI 처리 속도 향상 및 타임아웃 방지를 위해 압축률 증가
-                        resolve(canvas.toDataURL('image/jpeg', 0.6));
+                        // 구글 AI 처리 속도 향상 및 타임아웃 방지를 위해 압축률 증가 (용량 대폭 축소)
+                        resolve(canvas.toDataURL('image/jpeg', 0.5));
                     };
                     img.onerror = reject;
                 };
