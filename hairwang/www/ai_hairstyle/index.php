@@ -95,7 +95,7 @@
                 <!-- Gender Buttons -->
                 <div class="flex gap-2 w-full mt-6" id="actionButtons">
                     <div class="flex-1">
-                        <input type="file" accept="image/*" id="fileInputFemale" class="hidden"
+                        <input type="file" accept="image/jpeg, image/png, image/webp, .jpg, .jpeg, .png, .webp" id="fileInputFemale" class="hidden"
                             onchange="handleImageUpload(event, 'female')">
                         <button onclick="document.getElementById('fileInputFemale').click()"
                             class="w-full h-[52px] bg-slate-100 text-black rounded-full font-bold text-[15px] flex items-center justify-center gap-2 active:scale-95 transition-all outline-none border border-slate-200">
@@ -103,7 +103,7 @@
                         </button>
                     </div>
                     <div class="flex-1">
-                        <input type="file" accept="image/*" id="fileInputMale" class="hidden"
+                        <input type="file" accept="image/jpeg, image/png, image/webp, .jpg, .jpeg, .png, .webp" id="fileInputMale" class="hidden"
                             onchange="handleImageUpload(event, 'male')">
                         <button onclick="document.getElementById('fileInputMale').click()"
                             class="w-full h-[52px] bg-slate-100 text-black rounded-full font-bold text-[15px] flex items-center justify-center gap-2 active:scale-95 transition-all outline-none border border-slate-200">
@@ -297,6 +297,14 @@
         async function handleImageUpload(e, gender) {
             const file = e.target.files[0];
             if (!file) return;
+
+            // HEIC/HEIF 차단 및 경고 (iOS Safari 자동 변환 실패 시 대비)
+            const fileName = file.name.toLowerCase();
+            if (fileName.endsWith('.heic') || fileName.endsWith('.heif') || file.type === 'image/heic' || file.type === 'image/heif') {
+                alert("아이폰 고화질(HEIC) 원본 파일은 브라우저에서 분석할 수 없습니다. 화면 캡처본을 사용하시거나, JPG/PNG 형태의 사진 아이콘을 선택해주세요.");
+                e.target.value = ''; // Input 초기화
+                return;
+            }
 
             selectedGender = gender;
             try {
