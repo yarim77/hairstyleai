@@ -112,8 +112,8 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonBody);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json'
 ));
-curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2); // Force TLSv1.2 (fixes hangs on older OpenSSL)
-curl_setopt($ch, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4); // Force IPv4 (fixes IPv6 routing loops/hangs)
+curl_setopt($ch, CURLOPT_SSLVERSION, 6); // 6 is CURL_SSLVERSION_TLSv1_2 (fixes hangs on older OpenSSL)
+curl_setopt($ch, CURLOPT_IPRESOLVE, 1); // 1 is CURL_IPRESOLVE_V4 (fixes IPv6 routing loops/hangs)
 curl_setopt($ch, CURLOPT_TIMEOUT, 120); // allow up to 120 seconds for generation
 
 $response = curl_exec($ch);
