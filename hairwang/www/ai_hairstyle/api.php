@@ -132,6 +132,7 @@ if ($error) {
             'header' => "Content-Type: application/json\r\n",
             'content' => $jsonBody,
             'timeout' => 180,
+            'protocol_version' => 1.0, // Force HTTP 1.0 to drop Chunked Transfer/100-Continue
             'ignore_errors' => true
         ],
         'ssl' => [
@@ -143,7 +144,7 @@ if ($error) {
     $response = @file_get_contents($url, false, $context);
 
     if ($response === false) {
-        $errorMsg = "서버 외부접속 완전 차단됨. 현재 이용 중인 웹 호스팅(서버) 방화벽이 외부 구글 API로 나가는 통신을 차단하고 있습니다. 호스팅 고객센터에 '운영하시는 API(generativelanguage.googleapis.com) 통신을 위해 Outbound(443) 허용'을 요청하셔야 합니다. 상세 에러: " . $error;
+        $errorMsg = "서버 외부접속 완전 차단됨. 호스팅 고객센터에 다음을 요청주세요: [ 외부 API(generativelanguage.googleapis.com) 도메인 및 443(https) 아웃바운드 포트 통신 허용 요청 방화벽 해제 ]. / cURL 에러: " . $error . " / stream 에러: " . error_get_last()['message'];
         echo json_encode(['success' => false, 'error' => $errorMsg]);
         exit();
     }
