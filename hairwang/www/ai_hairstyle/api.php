@@ -125,10 +125,37 @@ $error = curl_error($ch);
 curl_close($ch);
 
 if ($error) {
-    echo json_encode(['success' => false, 'error' => $error]);
-    exit();
-}
+    // 1차 cURL 실패 시, 스트림 우회 방식으로 2차 시도 (일부 호스팅 방화벽 우회용)
+    $options = [
+        'http' => [
+            'method' => 'POST',
+            'header' => "Content-Type: application/json\r\n",
+            'content' => $jsonBody,
+            'timeout' => 120,
+            'ignore_errors' => true
+        ],
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false
+        ]
+    ];
+    $context = stream_context_create($options);
+    $response = @file_get_contents($url, false, $context);
 
+    if ($response === false) {
+        $errorMsg = "서버 외부접속 완전 차단됨. 현재 이용 중인 웹 호스팅(서버) 방화벽이 외부 구글 API로 나가는 통신을 차단하고 있습니다. 호스팅 고객센터에 '운영하시는 API(generativelanguage.googleapis.com) 통신을 위해 Outbound(443) 허용'을 요청하셔야 합니다. 상세 에러: " . $error;
+        echo json_encode(['success' => false, 'error' => $errorMsg]);
+        exit();
+    }
+
+    // 파일 겟 컨텐츠가 성공한 경우 HTTP 코드 유추
+    $httpCode = 200;
+    if (isset($http_response_header) && is_array($http_response_header)) {
+        if (preg_match('#HTTP/\d+\.\d+ (\d+)#i', $http_response_header[0], $matches)) {
+            $httpCode = intval($matches[1]);
+        }
+    }
+}
 $responseData = json_decode($response, true);
 if ($httpCode !== 200) {
     if (isset($responseData['error']['message'])) {
