@@ -140,6 +140,8 @@ if ($httpCode !== 200) {
         $errMsg = $responseData['error']['message'];
         if ($httpCode === 429 && strpos($errMsg, "Quota exceeded") !== false) {
             $errMsg = "Google AI Studio 할당량이 초과되었습니다.";
+        } else if ($httpCode === 503 || strpos(strtolower($errMsg), "high demand") !== false || strpos(strtolower($errMsg), "overloaded") !== false) {
+            $errMsg = "현재 AI 서버에 전 세계적으로 접속자가 폭주하여 일시적인 지연이 발생했습니다. 1~2분 뒤에 다시 '생성하기' 버튼을 눌러주시면 정상적으로 진행됩니다! 🙏";
         }
         echo json_encode(['success' => false, 'error' => $errMsg, 'httpCode' => $httpCode]);
     } else {
