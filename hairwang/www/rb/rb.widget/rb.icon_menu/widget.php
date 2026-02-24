@@ -1,19 +1,28 @@
 <?php
-if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+if (!defined('_GNUBOARD_'))
+    exit; // 개별 페이지 접근 불가
 ?>
 
 <link rel="stylesheet" href="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/style.css">
 
 <div class="rb_icon_menu_wrap">
     <ul class="rb_icon_menu">
-<li>
-			<a href="/anonymous">
-				<dd>
-					<img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/13.png" alt="비밀톡">
-				</dd>
-				<dd>비밀톡</dd>
-			</a>
-</li>
+        <li>
+            <a href="/ai_hairstyle">
+                <dd>
+                    <img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/15.png" alt="AI 헤어스타일">
+                </dd>
+                <dd>AI 스타일</dd>
+            </a>
+        </li>
+        <li>
+            <a href="/anonymous">
+                <dd>
+                    <img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/13.png" alt="비밀톡">
+                </dd>
+                <dd>비밀톡</dd>
+            </a>
+        </li>
         <li>
             <a href="/bbs/board.php?bo_table=free">
                 <dd>
@@ -22,15 +31,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <dd>헤어톡</dd>
             </a>
         </li>
-         <li>
+        <li>
             <a href="/rb/attend.php">
                 <dd>
                     <img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/8.png" alt="출석부">
                 </dd>
                 <dd>출석부</dd>
             </a>
-        </li> 		
-<li>
+        </li>
+        <li>
             <a href="/bbs/board.php?bo_table=card">
                 <dd>
                     <img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/4.png" alt="시술정보">
@@ -38,7 +47,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <dd>포트폴리오</dd>
             </a>
         </li>
-<!--
+        <!--
         <li>
             <a href="/bbs/board.php?bo_table=qa">
                 <dd>
@@ -55,7 +64,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <dd>유튜브</dd>
             </a>
         </li>
--->	
+-->
         <li>
             <a href="/second_hand">
                 <dd>
@@ -72,25 +81,26 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <dd>이벤트</dd>
             </a>
         </li>
-<li>
-			<a href="/notice">
-				<dd>
-					<img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/14.png" alt="공지사항">
-				</dd>
-				<dd>공지사항</dd>
-			</a>
-		</li>
-<li>
-            <a href="https://hairwang.com/notice/%ED%97%A4%EC%96%B4%EC%99%95-%EC%B1%84%EC%9A%A9%EC%A0%95%EB%B3%B4-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88-%EC%97%AC%EB%9F%AC%EB%B6%84%EA%B3%BC-%ED%95%A8%EA%BB%98-%EB%A7%8C%EB%93%AD%EB%8B%88%EB%8B%A4/">
+        <li>
+            <a href="/notice">
+                <dd>
+                    <img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/14.png" alt="공지사항">
+                </dd>
+                <dd>공지사항</dd>
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://hairwang.com/notice/%ED%97%A4%EC%96%B4%EC%99%95-%EC%B1%84%EC%9A%A9%EC%A0%95%EB%B3%B4-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88-%EC%97%AC%EB%9F%AC%EB%B6%84%EA%B3%BC-%ED%95%A8%EA%BB%98-%EB%A7%8C%EB%93%AD%EB%8B%88%EB%8B%A4/">
                 <dd>
                     <img src="<?php echo G5_URL ?>/rb/rb.widget/rb.icon_menu/img/10.png" alt="채용정보">
                 </dd>
                 <dd>채용정보</dd>
             </a>
-        </li>              
+        </li>
 
-		</ul>
-<!-- 
+    </ul>
+    <!-- 
         <li>
             <a href="#">
                 <dd>
@@ -135,7 +145,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <dd>클래스</dd>
             </a> 
         </li>-->
-    
+
     <!-- <div class="rb_more_btn_wrap">
         <button type="button" class="rb_more_btn" onclick="toggleMoreMenu()">
             <span class="more_text">더보기</span>
